@@ -1,9 +1,8 @@
 <script>
-	import { v4 as uuidv4 } from 'uuid';
-	import Header from './components/Header.svelte';
-	import MeetUpGrid from './components/MeetUpGrid.svelte';
+  import { v4 as uuidv4 } from 'uuid';
+  import MeetUpItem from './MeetUpItem.svelte';
 
-	let meetups = [
+  const meetups = [
     {
       id: uuidv4(),
       imgUrl: 'http://via.placeholder.com/300',
@@ -27,5 +26,8 @@
   ];
 </script>
 
-<Header />
-<MeetUpGrid meetups={meetups}/>
+<div class="meetup-grid">
+  {#each meetups as meetup}
+	  <MeetUpItem meetup={meetup} />
+  {/each}
+</div>
