@@ -2,6 +2,7 @@
 	import { v4 as uuidv4 } from 'uuid';
 	import Header from './components/Header.svelte';
 	import MeetUpGrid from './components/MeetUpGrid.svelte';
+	import TextInput from './components/TextInput.svelte';
 
 	let meetup = {
 		id: uuidv4(),
@@ -43,43 +44,76 @@
 	}
 </script>
 
+<style lang="scss">
+	main {
+		padding: 1rem;
+	}
+</style>
+
 <Header />
 <main>
 	<form on:submit|preventDefault={addMeetUp}>
-		<div class="form-control">
-			<label for="imgUrl">Image URL:</label>
-		<input type="text" id="imgUrl" bind:value={meetup.imgUrl}/>
-		</div>
+		<TextInput 
+			variant="input"
+			id="imgUrl"
+			label="Image URL"
+			type="text"
+			value={meetup.imgUrl}
+			on:input={event => meetup.imgUrl = event.target.value}
+		/>
 
-		<div class="form-control">
-			<label for="name">Name:</label>
-			<input type="text" id="name" bind:value={meetup.name}/>
-		</div>
+		<TextInput 
+			variant="input"
+			id="name"
+			label="Name"
+			type="text"
+			value={meetup.name}
+			on:input={event => meetup.name = event.target.value}
+		/>
 
-		<div class="form-control">
-			<label for="subtitle">Subtitle:</label>
-			<input type="text" id="subtitle" bind:value={meetup.subtitle}/>
-		</div>
+		<TextInput 
+			variant="input"
+			id="subtitle"
+			label="Subtitle"
+			type="text"
+			value={meetup.subtitle}
+			on:input={event => meetup.subtitle = event.target.value}
+		/>
 
-		<div class="form-control">
-			<label for="description">Description:</label>
-			<textarea id="description" cols="30" rows="6" bind:value={meetup.description}></textarea>
-		</div>
+		<TextInput 
+			variant="text-area"
+			id="description"
+			label="Description"
+			type=""
+			value={meetup.description}
+			on:input={event => meetup.description = event.target.value}
+		/>
 		
-		<div class="form-control">
-			<label for="address">Address:</label>
-			<input type="text" id="address" bind:value={meetup.address}/>
-		</div>
+		<TextInput 
+			variant="input"
+			id="address"
+			label="Address"
+			type="text"
+			value={meetup.address}
+			on:input={event => meetup.address = event.target.value}
+		/>
 
-		<div class="form-control">
-			<label for="contactPerson">Contact Person:</label>
-			<input type="text" id="contactPerson" bind:value={meetup.contactPerson}/>
-		</div>
+		<TextInput 
+			variant="input"
+			id="contactPerson"
+			label="Contact Person"
+			type="text"
+			on:input={event => meetup.contactPerson = event.target.value}
+		/>
 
-		<div class="form-control">
-			<label for="email">Contact Email:</label>
-			<input type="email" id="email" bind:value={meetup.contactEmail}/>
-		</div>
+		<TextInput 
+			variant="input"
+			id="email"
+			label="Contact Email"
+			type="email"
+			value={meetup.contactEmail}
+			on:input={event => meetup.contactEmail = event.target.value}
+		/>
 
 		<button type="submit">Add Meetup</button>
 	</form>
