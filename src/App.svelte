@@ -3,6 +3,7 @@
 	import Header from './components/Header.svelte';
 	import MeetUpGrid from './components/MeetUpGrid.svelte';
 	import TextInput from './components/TextInput.svelte';
+	import Button from './components/Button.svelte';
 
 	let meetup = {
 		id: uuidv4(),
@@ -115,7 +116,10 @@
 			on:input={event => meetup.contactEmail = event.target.value}
 		/>
 
-		<button type="submit">Add Meetup</button>
+		<Button
+			type="submit"
+			text="Add Meetup"
+		/>
 	</form>
 	<MeetUpGrid meetups={meetups}/>
 </main>

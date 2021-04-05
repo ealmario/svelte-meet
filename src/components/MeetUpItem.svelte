@@ -1,4 +1,5 @@
 <script>
+  import Button from './Button.svelte'''
   export let meetup;
 </script>
 
@@ -19,7 +20,7 @@
     <p class="address">{meetup.address}</p>
   </div>
   <div class="card-footer">
-    <button>See More</button>
-    <button>Add to Favorites</button>
+    <Button type="button" text="See More"/>
+    <Button type="button" text="Add to Favorites"/>
   </div>
 </div>
