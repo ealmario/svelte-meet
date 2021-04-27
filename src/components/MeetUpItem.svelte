@@ -12,8 +12,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   overflow: hidden;
+  position: relative;
   margin-bottom: 1rem;
-  width: 90%;
+  width: 100%;
   height: 100px;
 }
 
@@ -34,12 +35,14 @@
   color: #5c6672;
   font-size: 0.75rem;
   padding: 0.75rem 0.5rem 0.75rem 0;
+  height: 100%;
+  width: 75%;
 }
 
 .name {
   color: #1c2026;
   font-size: 0.875rem;
-  font-weight: bolder;
+  font-weight: normal !important;
   letter-spacing: 0.25px;
 }
 
@@ -50,8 +53,28 @@
 }
 
 .description {
-  font-weight: normal;
   line-height: 15px;
+}
+
+.address,
+.description {
+  font-weight: bold !important;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.add-to-fave {
+  // fill: #f6b23c;
+  cursor: pointer;
+  top: 0.5rem;
+  right: 0.5rem;
+  height: 0.875rem;
+  width: 0.875rem;
+  position: absolute;
 }
 </style>
 
@@ -60,8 +83,9 @@
     <img src={meetup.imgUrl} alt="Meetup Item" class="meet-up-img">
   </figure>
   <div class="card-body">
-    <h5 class="name">{meetup.name}</h5>
-    <h6 class="address">{meetup.address}</h6>
+    <img src="images/heart.svg" alt="heart icon" class="add-to-fave">
+    <p class="name">{meetup.name}</p>
+    <p class="address ellipsis">{meetup.address}</p>
     <!-- <h6>{meetup.subtitle}</h6> -->
     <!-- <p class="poster">Posted by:
       <a href="mailto:{meetup.contactEmail}">
@@ -69,7 +93,7 @@
       </a> 
     </p> -->
     <!-- <div class="divider"></div> -->
-    <p class="description">{meetup.description}</p>
+    <p class="description ellipsis">{meetup.description}</p>
     <!-- <p class="address">{meetup.address}</p> -->
   </div>
   <!-- <div class="card-footer">
