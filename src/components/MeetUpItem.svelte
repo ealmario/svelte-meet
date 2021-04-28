@@ -68,13 +68,16 @@
 }
 
 .add-to-fave {
-  // fill: #f6b23c;
+  background: #f6b23c;
   cursor: pointer;
+  -webkit-mask: url('/images/heart.svg') no-repeat center;
+  mask: url('/images/heart.svg') no-repeat center;
   top: 0.5rem;
   right: 0.5rem;
-  height: 0.875rem;
-  width: 0.875rem;
+  height: 1.5rem;
+  width: 1.5rem;
   position: absolute;
+  transform: scale(0.8);
 }
 </style>
 
@@ -83,7 +86,7 @@
     <img src={meetup.imgUrl} alt="Meetup Item" class="meet-up-img">
   </figure>
   <div class="card-body">
-    <img src="images/heart.svg" alt="heart icon" class="add-to-fave">
+    <div class="add-to-fave"></div>
     <p class="name">{meetup.name}</p>
     <p class="address ellipsis">{meetup.address}</p>
     <!-- <h6>{meetup.subtitle}</h6> -->
