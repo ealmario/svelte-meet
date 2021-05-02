@@ -5,14 +5,16 @@
 
 <style lang="scss">
   button {
-    background: #e49c15;
+    background: #318beb;
     border: none;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(2,77,158,0.2);
     color: #fdfdfd;
     cursor: pointer;
     font-size: 0.875rem;
-    padding: 0.75rem 1.25rem;
+    font-weight: bold !important;
+    letter-spacing: 0.25px;
+    padding: 0.875rem 1.25rem;
     transition: 300ms ease;
 
     &:focus {
@@ -20,7 +22,11 @@
     }
 
     &:hover {
-      background: #ee9f17;
+      background: #3c91ec;
+    }
+
+    &:active {
+      background: #1572d5;
     }
   }
 </style>

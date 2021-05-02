@@ -104,7 +104,7 @@
 	<div class="events-bg"></div>
 </div>
 <main>
-	<!-- <form on:submit|preventDefault={addMeetUp}>
+	<form on:submit|preventDefault={addMeetUp}>
 		<TextInput 
 			variant="input"
 			id="imgUrl"
@@ -171,6 +171,6 @@
 			type="submit"
 			text="Add Meetup"
 		/>
-	</form> -->
+	</form>
 	<MeetUpGrid meetups={meetups}/>
 </main>
