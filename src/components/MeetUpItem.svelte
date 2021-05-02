@@ -1,6 +1,8 @@
 <script>
-  import Button from './Button.svelte';
+  import { createEventDispatcher } from 'svelte';
   export let meetup;
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <style lang="scss">
@@ -78,6 +80,24 @@
   width: 1.5rem;
   position: absolute;
   transform: scale(0.8);
+  transition: 300ms ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: #f1a727;
+  }
+
+  &:active {
+    background: #da9010;
+  }
+}
+
+.is-favorite {
+  -webkit-mask: url('/images/heart-f.svg') no-repeat center;
+  mask: url('/images/heart-.svg') no-repeat center;
 }
 </style>
 
@@ -86,7 +106,7 @@
     <img src={meetup.imgUrl} alt="Meetup Item" class="meet-up-img">
   </figure>
   <div class="card-body">
-    <div class="add-to-fave"></div>
+    <button class={`add-to-fave ${meetup.isFavorite && 'is-favorite'}`} on:click={() => dispatch('togglefavorite', meetup.id)}></button>
     <p class="name">{meetup.name}</p>
     <p class="address ellipsis">{meetup.address}</p>
     <!-- <h6>{meetup.subtitle}</h6> -->

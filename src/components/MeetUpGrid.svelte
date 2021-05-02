@@ -12,6 +12,9 @@
 
 <div class="meetup-grid">
   {#each meetups as meetup}
-	  <MeetUpItem meetup={meetup} />
+    <MeetUpItem 
+      meetup={meetup} 
+      on:togglefavorite
+    />
   {/each}
 </div>

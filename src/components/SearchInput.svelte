@@ -9,7 +9,7 @@
 
   input {
     border: 2px solid rgba(0,0,0,0);
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     font-size: 0.75rem;
     font-weight: bold !important;

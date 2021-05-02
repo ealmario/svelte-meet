@@ -13,7 +13,8 @@
 		description: '',
 		address: '',
 		contactPerson: '',
-		contactEmail: ''
+		contactEmail: '',
+		isFavorite: false
 	};
 
 	let meetups = [
@@ -25,7 +26,8 @@
       description: 'In this meetup, we will have experts that would teach you how to code',
       address: '724 Kayla Branch' ,
       contactPerson: 'Johanna Larson',
-      contactEmail: 'jlarson@code.com'
+			contactEmail: 'jlarson@code.com',
+			isFavorite: false
     },
     {
       id: uuidv4(),
@@ -35,10 +37,26 @@
       description: 'Learn the different types of brewing methods and create the perfect cup even at home! Workshop is from 3pm - 5pm on Zoom and FB Live.',
       address: 'Apt. 818 47298 Kertzmann Summit Cubao',
       contactPerson: 'Jennie Pfeffer',
-      contactEmail: 'jennie,pfeffer@coffeeworks.com'
+			contactEmail: 'jennie,pfeffer@coffeeworks.com',
+			isFavorite: false
     },
 	];
 	
+	function toggleFavorite(event) {
+		// Extract ID from event detail
+		const id = event.detail;
+		// Copy meetup array before updating
+		const updatedMeetup = {...meetups.find(meetup => meetup.id === id)};
+		// Toggle isFavorite
+		updatedMeetup.isFavorite = !updatedMeetup.isFavorite;
+		// Get the index of the meetup
+		const meetupIndex = meetups.findIndex(meetup => meetup.id === id);
+		// Create a copy of meetups and update the specific meetup
+		const updatedMeetups = [...meetups];
+		updatedMeetups[meetupIndex] = updatedMeetup;
+		meetups = updatedMeetups;
+	}
+
 	function addMeetUp() {
 		meetups = [...meetups, meetup];
 		console.log(meetups);
@@ -172,5 +190,8 @@
 			text="Add Meetup"
 		/>
 	</form>
-	<MeetUpGrid meetups={meetups}/>
+	<MeetUpGrid 
+		meetups={meetups}
+		on:togglefavorite={toggleFavorite}
+	/>
 </main>

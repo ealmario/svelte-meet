@@ -31,4 +31,4 @@
   }
 </style>
 
-<button type={type}>{text}</button>
+<button type={type} on:click>{text}</button>
