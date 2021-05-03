@@ -2,20 +2,8 @@
 	import { v4 as uuidv4 } from 'uuid';
 	import SearchInput from './components/SearchInput.svelte';
 	import MeetUpGrid from './components/MeetUpGrid.svelte';
-	import TextInput from './components/TextInput.svelte';
-	import Button from './components/Button.svelte';
-
-	let meetup = {
-		id: uuidv4(),
-		imgUrl: '',
-		name: '',
-		subtitle: '',
-		description: '',
-		address: '',
-		contactPerson: '',
-		contactEmail: '',
-		isFavorite: false
-	};
+	import EditMeetUp from './components/EditMeetUp.svelte';
+	import FloatingActionButton from './components/FloatingActionButton.svelte';
 
 	let meetups = [
     {
@@ -41,6 +29,8 @@
 			isFavorite: false
     },
 	];
+
+	let editMode;
 	
 	function toggleFavorite(event) {
 		// Extract ID from event detail
@@ -121,75 +111,12 @@
 	<h3 class="explore-text">Explore</h3>
 	<div class="events-bg"></div>
 </div>
+
 <main>
-	<form on:submit|preventDefault={addMeetUp}>
-		<TextInput 
-			variant="input"
-			id="imgUrl"
-			label="Image URL"
-			type="text"
-			value={meetup.imgUrl}
-			on:input={event => meetup.imgUrl = event.target.value}
-		/>
-
-		<TextInput 
-			variant="input"
-			id="name"
-			label="Name"
-			type="text"
-			value={meetup.name}
-			on:input={event => meetup.name = event.target.value}
-		/>
-
-		<TextInput 
-			variant="input"
-			id="subtitle"
-			label="Subtitle"
-			type="text"
-			value={meetup.subtitle}
-			on:input={event => meetup.subtitle = event.target.value}
-		/>
-
-		<TextInput 
-			variant="text-area"
-			id="description"
-			label="Description"
-			type=""
-			value={meetup.description}
-			on:input={event => meetup.description = event.target.value}
-		/>
-		
-		<TextInput 
-			variant="input"
-			id="address"
-			label="Address"
-			type="text"
-			value={meetup.address}
-			on:input={event => meetup.address = event.target.value}
-		/>
-
-		<TextInput 
-			variant="input"
-			id="contactPerson"
-			label="Contact Person"
-			type="text"
-			on:input={event => meetup.contactPerson = event.target.value}
-		/>
-
-		<TextInput 
-			variant="input"
-			id="email"
-			label="Contact Email"
-			type="email"
-			value={meetup.contactEmail}
-			on:input={event => meetup.contactEmail = event.target.value}
-		/>
-
-		<Button
-			type="submit"
-			text="Add Meetup"
-		/>
-	</form>
+	<FloatingActionButton on:click={()=> (editMode = 'add')}/>
+		{#if editMode === 'add'}
+			<EditMeetUp />
+		{/if}
 	<MeetUpGrid 
 		meetups={meetups}
 		on:togglefavorite={toggleFavorite}
