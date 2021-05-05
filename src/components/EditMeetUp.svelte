@@ -52,7 +52,7 @@
   />
 
   <TextInput 
-    variant="text-area"
+    variant="textarea"
     id="description"
     label="Description"
     type=""

@@ -47,8 +47,10 @@
 		meetups = updatedMeetups;
 	}
 
-	function addMeetUp() {
+	function addMeetUp(event) {
+		const meetup = event.detail;
 		meetups = [...meetups, meetup];
+		editMode = null;
 		console.log(meetups);
 	}
 </script>
@@ -115,7 +117,7 @@
 <main>
 	<FloatingActionButton on:click={()=> (editMode = 'add')}/>
 		{#if editMode === 'add'}
-			<EditMeetUp />
+			<EditMeetUp on:addmeetup={addMeetUp}/>
 		{/if}
 	<MeetUpGrid 
 		meetups={meetups}

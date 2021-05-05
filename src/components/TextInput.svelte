@@ -18,6 +18,7 @@
       border: none;
       border-bottom: 2px solid #c6cbd2;
       transition: 300ms ease;
+      font-weight: bold !important;
 
       &:focus {
         border-color: #f6b23c;
