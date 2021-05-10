@@ -10,7 +10,7 @@
       id: uuidv4(),
       imgUrl: 'http://via.placeholder.com/300',
       name: 'Coding Bootcamp',
-      subtitle: 'Learn to code in 4 hours',
+      schedule: 'May 3, 2021',
       description: 'In this meetup, we will have experts that would teach you how to code',
       address: '724 Kayla Branch' ,
       contactPerson: 'Johanna Larson',
@@ -21,7 +21,7 @@
       id: uuidv4(),
       imgUrl: 'http://via.placeholder.com/300',
       name: 'Coffee Workshop',
-      subtitle: 'Manual Brewing Methods',
+      schedule: 'June 20, 2021',
       description: 'Learn the different types of brewing methods and create the perfect cup even at home! Workshop is from 3pm - 5pm on Zoom and FB Live.',
       address: 'Apt. 818 47298 Kertzmann Summit Cubao',
       contactPerson: 'Jennie Pfeffer',
@@ -30,7 +30,7 @@
     },
 	];
 
-	let editMode;
+	let editMode = false;
 	
 	function toggleFavorite(event) {
 		// Extract ID from event detail
@@ -50,7 +50,7 @@
 	function addMeetUp(event) {
 		const meetup = event.detail;
 		meetups = [...meetups, meetup];
-		editMode = null;
+		editMode = false;
 		console.log(meetups);
 	}
 </script>
@@ -58,8 +58,9 @@
 <style lang="scss">
 	main {
 		padding: 1rem;
-		height: 100vh;
-		width: 100vw;
+		position: relative;
+		height: 100%;
+		width: 100%;
 	}
 
 	.explore-container {
@@ -72,7 +73,7 @@
 		bottom: -1.25rem;
 		left: 5%;
 		width: 100%;
-		z-index: 3;
+		z-index: 2;
 	}
 
 	.events-bg {
@@ -104,7 +105,13 @@
 	}
 </style>
 
-<!-- <Header /> -->
+{#if editMode === true}
+	<EditMeetUp
+		editMode={editMode} 
+		on:addmeetup={addMeetUp}
+	/>
+{/if}
+
 <div class="explore-container">
 	<div class="search-input">
 		<SearchInput />
@@ -115,12 +122,9 @@
 </div>
 
 <main>
-	<FloatingActionButton on:click={()=> (editMode = 'add')}/>
-		{#if editMode === 'add'}
-			<EditMeetUp on:addmeetup={addMeetUp}/>
-		{/if}
 	<MeetUpGrid 
 		meetups={meetups}
 		on:togglefavorite={toggleFavorite}
 	/>
+	<FloatingActionButton on:click={()=> (editMode = true)}/>
 </main>

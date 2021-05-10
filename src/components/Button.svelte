@@ -16,6 +16,7 @@
     letter-spacing: 0.25px;
     padding: 0.875rem 1.25rem;
     transition: 300ms ease;
+    width: 100%;
 
     &:focus {
       outline: none;

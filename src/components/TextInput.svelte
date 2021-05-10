@@ -8,17 +8,19 @@
 
 <style lang="scss">
   .form-control {
-    font-size: 0.875rem;
     font-weight: bold !important;
-    margin: 1rem;
+    margin-bottom: 2rem;
     position: relative;
 
     input,
     textarea {
       border: none;
       border-bottom: 2px solid #c6cbd2;
-      transition: 300ms ease;
+      font-size: 0.875rem;
       font-weight: bold !important;
+      transition: 300ms ease;
+      width: 100%;
+
 
       &:focus {
         border-color: #f6b23c;
@@ -28,13 +30,16 @@
     }
 
     input:focus + label,
-    input:not([value=""]) + label {
+    input:not([value=""]) + label,
+    textarea:focus + label,
+    textarea:not([value=""]) + label {
       font-size: 0.75rem;
       top: -0.875rem;
     }
 
     label {
       color: #717e8e;
+      font-size: 0.875rem;
       position: absolute;
       top: 0;
       left: 0;
@@ -53,7 +58,7 @@
     />
   {:else if variant === "textarea"}
     <textarea 
-      rows="6" 
+      rows="3" 
       columns="30" 
       id={id} 
       on:input
