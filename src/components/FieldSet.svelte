@@ -6,6 +6,7 @@
   .fieldset {
     border: none;
     margin-bottom: 2.5rem;
+    width: 100%;
   }
 
   .legend {

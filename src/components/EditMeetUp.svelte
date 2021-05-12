@@ -60,11 +60,11 @@
 
       <TextInput 
         variant="input"
-        id="subtitle"
+        id="schedule"
         label="Event Schedule"
-        type="text"
-        value={meetup.subtitle}
-        on:input={event => meetup.subtitle = event.target.value}
+        type="date"
+        value={meetup.schedule}
+        on:input={event => meetup.schedule = event.target.value}
       />
 
       <TextInput 
@@ -117,7 +117,7 @@
     <div class="btn-container">
       <Button
         type="submit"
-        text="Add Meetup"
+        text="Save"
       />
     </div>
   </form>
