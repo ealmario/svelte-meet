@@ -47,7 +47,6 @@
         variant="input"
         id="name"
         label="Event Name"
-        type="text"
         value={meetup.name}
         on:input={event => meetup.name = event.target.value}
       />
@@ -57,19 +56,17 @@
       <!-- Event Place (Address) -->
 
       <TextInput 
-        variant="input"
+        variant="date"
         id="schedule"
         label="Event Schedule"
-        type="date"
         value={meetup.schedule}
         on:input={event => meetup.schedule = event.target.value}
       />
-
+      
       <TextInput 
         variant="input"
         id="address"
         label="Event Place"
-        type="text"
         value={meetup.address}
         on:input={event => meetup.address = event.target.value}
       />
@@ -78,7 +75,6 @@
         variant="textarea"
         id="description"
         label="Description"
-        type=""
         value={meetup.description}
         on:input={event => meetup.description = event.target.value}
       />
@@ -87,36 +83,33 @@
         variant="input"
         id="imgUrl"
         label="Event Image"
-        type="text"
         value={meetup.imgUrl}
         on:input={event => meetup.imgUrl = event.target.value}
       />
     </FieldSet>
  
     <FieldSet legendLabel="Event Organizer Details">
-    <TextInput 
-      variant="input"
-      id="contactPerson"
-      label="Contact Person"
-      type="text"
-      on:input={event => meetup.contactPerson = event.target.value}
-    />
-
-    <TextInput 
-      variant="input"
-      id="email"
-      label="Contact Email"
-      type="email"
-      value={meetup.contactEmail}
-      on:input={event => meetup.contactEmail = event.target.value}
-    />
-  </FieldSet>
-
-    <div class="btn-container">
-      <Button
-        type="submit"
-        text="Save"
+      <TextInput 
+        variant="input"
+        id="contactPerson"
+        label="Contact Person"
+        on:input={event => meetup.contactPerson = event.target.value}
       />
-    </div>
+
+      <TextInput 
+        variant="email"
+        id="email"
+        label="Contact Email"
+        value={meetup.contactEmail}
+        on:input={event => meetup.contactEmail = event.target.value}
+      />
+    </FieldSet>
   </form>
+  <div class="btn-container" slot="footer">
+    <Button
+      type="button"
+      text="Save"
+      on:click={submitForm}
+    />
+  </div>
 </FullModal>

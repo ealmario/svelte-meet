@@ -63,7 +63,6 @@
 	main {
 		padding: 1rem;
 		position: relative;
-		height: 100%;
 		width: 100%;
 	}
 

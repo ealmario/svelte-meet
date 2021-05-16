@@ -2,7 +2,6 @@
   export let label = "";
   export let id = "";
   export let value = "";
-  export let type = "";
   export let variant = "";
 </script>
 
@@ -12,10 +11,12 @@
     margin-bottom: 2rem;
     position: relative;
 
-    input,
-    textarea {
+    .input,
+    .textarea {
+      background: #fff;
       border: none;
       border-bottom: 2px solid #c6cbd2;
+      cursor: pointer;
       font-size: 0.875rem;
       font-weight: bold !important;
       transition: 300ms ease;
@@ -29,8 +30,8 @@
       }
     }
 
-    input:focus + label,
-    textarea:focus + label {
+    .input:focus + label,
+    .textarea:focus + label {
       color: #f6b23c;
       font-size: 0.75rem;
       top: -0.875rem;
@@ -50,9 +51,12 @@
       top: -0.875rem;
     }
 
-    input[type="date"]::-webkit-calendar-picker-indicator {
-      display:none;
-    }
+    // input[type="date"]::-webkit-calendar-picker-indicator {
+    //   color: #1c2026;
+    //   background: #fff;
+    //   margin: 0 auto;
+    //   width: 100%;
+    // }
 
     .date-icon {
       background: #f6b23c;
@@ -71,14 +75,24 @@
 
 <div class="form-control">
   {#if variant === "input"}
-    <input 
-      type={type} 
+    <input
+      class="input" 
+      type="text"
       id={id} 
       value={value} 
       on:input
     />
+  {:else if variant === "email"}
+    <input
+      class="input" 
+      type="email"
+      id={id}
+      value={value}
+      on:input
+    >
   {:else if variant === "textarea"}
     <textarea 
+      class="textarea"
       rows="3" 
       columns="30" 
       id={id}  
@@ -87,18 +101,18 @@
     </textarea>
   {:else if variant === "date"}
     <input
-      type={type}
+      class="input"
+      type="date"
       id={id}
       value={value}
-      required
       on:input
     />
   {/if}
   <label 
     for={id}
-    class={value !== ""  || type === "date" ? 'input-with-value' : ''}
+    class={value !== ""  || variant === "date" ? 'input-with-value' : ''}
   >{label}:</label>
-  {#if type === 'date'}
+  <!-- {#if variant === 'date'}
     <div class="date-icon"></div>
-  {/if}
+  {/if} -->
 </div>

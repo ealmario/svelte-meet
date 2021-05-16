@@ -41,6 +41,10 @@
     }
   }
 
+  .footer {
+    padding: 0 1rem;
+  }
+
   .back-btn {
     background: #1c2026;
     cursor: pointer;
@@ -62,7 +66,7 @@
   <div class="content">
     <slot />
   </div>
-  <footer>
+  <footer class="footer">
     <slot name="footer"></slot>
   </footer>
 </div>
