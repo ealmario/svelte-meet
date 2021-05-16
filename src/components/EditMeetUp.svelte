@@ -6,8 +6,6 @@
     import FullModal from './FullModal.svelte';
     import FieldSet from './FieldSet.svelte';
 
-    export let editMode;
-
     let meetup = {
       id: uuidv4(),
       imgUrl: '',
@@ -42,7 +40,7 @@
   }
 </style>
 
-<FullModal title="Edit Event" editMode={editMode}>
+<FullModal title="Edit Event" on:close>
   <form on:submit|preventDefault={submitForm} class="edit-form">
     <FieldSet legendLabel="Event Details">
       <TextInput 

@@ -53,6 +53,10 @@
 		editMode = false;
 		console.log(meetups);
 	}
+
+	function closeModal() {
+		editMode = !editMode;
+	}
 </script>
 
 <style lang="scss">
@@ -107,8 +111,8 @@
 
 {#if editMode === true}
 	<EditMeetUp
-		editMode={editMode} 
 		on:addmeetup={addMeetUp}
+		on:close={closeModal}
 	/>
 {/if}
 

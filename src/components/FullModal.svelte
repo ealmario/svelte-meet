@@ -1,13 +1,14 @@
 <script>
+  import { createEventDispatcher } from 'svelte'; 
+
   export let title;
   export let text;
   export let editMode;
-  
-  import Button from './Button.svelte';
 
-  const handleEditMode = () => {
-    editMode = false;
-    console.log(editMode);
+  const dispatch = createEventDispatcher();
+
+  function closeModal() {
+    dispatch('close');
   }
 </script>
 
@@ -53,7 +54,7 @@
 
 <div class="modal-container">
   <header class="header">
-    <button class="back-btn" on:click={handleEditMode}></button>
+    <button class="back-btn" on:click={closeModal}></button>
     <div class="page-title">
       <h1>{title}</h1>
     </div>
