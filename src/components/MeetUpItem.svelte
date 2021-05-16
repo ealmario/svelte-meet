@@ -48,7 +48,8 @@
   letter-spacing: 0.25px;
 }
 
-.address {
+.address
+.schedule {
   font-size: 0.75rem;
   letter-spacing: 0.25px;
   margin-bottom: 0.875rem;
@@ -56,6 +57,7 @@
 
 .description {
   line-height: 15px;
+  margin-top: 0.875rem;
 }
 
 .address,
@@ -108,7 +110,7 @@
   <div class="card-body">
     <button class={`add-to-fave ${meetup.isFavorite && 'is-favorite'}`} on:click={() => dispatch('togglefavorite', meetup.id)}></button>
     <p class="name">{meetup.name}</p>
-    <p class="address ellipsis">{meetup.address}</p>
+    <p class="address ellipsis">{meetup.address} | {meetup.schedule}</p>
     <!-- <h6>{meetup.subtitle}</h6> -->
     <!-- <p class="poster">Posted by:
       <a href="mailto:{meetup.contactEmail}">

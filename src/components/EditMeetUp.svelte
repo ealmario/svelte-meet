@@ -21,7 +21,11 @@
     const dispatch = createEventDispatcher();
     
     function submitForm() {
-      dispatch('addmeetup', meetup)
+      dispatch('addmeetup', meetup);
+    }
+
+    function closeModal() {
+      dispatch('close');
     }
 </script>
 
@@ -34,6 +38,7 @@
 
   .btn-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -62,7 +67,7 @@
         value={meetup.schedule}
         on:input={event => meetup.schedule = event.target.value}
       />
-      
+
       <TextInput 
         variant="input"
         id="address"
@@ -93,6 +98,7 @@
         variant="input"
         id="contactPerson"
         label="Contact Person"
+        value={meetup.contactPerson}
         on:input={event => meetup.contactPerson = event.target.value}
       />
 
@@ -108,7 +114,14 @@
   <div class="btn-container" slot="footer">
     <Button
       type="button"
+      text="Cancel"
+      variant="text-primary"
+      on:click={closeModal}
+    />
+    <Button
+      type="button"
       text="Save"
+      variant="solid-primary"
       on:click={submitForm}
     />
   </div>
