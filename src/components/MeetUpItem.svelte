@@ -23,13 +23,14 @@
 .card-header {
   border-radius: 8px 0 0 8px;
   margin-right: 0.75rem;
-  width: 25%;
+  width: 33%;
   height: 100%;
   overflow: hidden;
 
   img.meet-up-img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -38,7 +39,7 @@
   font-size: 0.75rem;
   padding: 0.75rem 0.5rem 0.75rem 0;
   height: 100%;
-  width: 75%;
+  width: 67%;
 }
 
 .name {
@@ -48,8 +49,7 @@
   letter-spacing: 0.25px;
 }
 
-.address
-.schedule {
+.address {
   font-size: 0.75rem;
   letter-spacing: 0.25px;
   margin-bottom: 0.875rem;
@@ -100,6 +100,16 @@
 .is-favorite {
   -webkit-mask: url('/images/heart-f.svg') no-repeat center;
   mask: url('/images/heart-.svg') no-repeat center;
+}
+
+@media screen and (min-width: 768px) {
+  .card-header {
+    width: 25%;
+  }
+
+  .card-body {
+    width: 75%;
+  }
 }
 </style>
 

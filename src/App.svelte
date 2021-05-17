@@ -8,7 +8,7 @@
 	let meetups = [
     {
       id: uuidv4(),
-      imgUrl: 'http://via.placeholder.com/300',
+      imgUrl: 'https://images.summitmedia-digital.com/esquiremagph/images/2019/03/13/WeWork_MAIN_Mar2019.jpg',
       name: 'Coding Bootcamp',
       schedule: 'May 3, 2021',
       description: 'In this meetup, we will have experts that would teach you how to code',
@@ -19,7 +19,7 @@
     },
     {
       id: uuidv4(),
-      imgUrl: 'http://via.placeholder.com/300',
+      imgUrl: 'https://bigseventravel.com/wp-content/uploads/2019/09/Blocleaf-Cafe%CC%81.jpeg',
       name: 'Coffee Workshop',
       schedule: 'June 20, 2021',
       description: 'Learn the different types of brewing methods and create the perfect cup even at home! Workshop is from 3pm - 5pm on Zoom and FB Live.',
