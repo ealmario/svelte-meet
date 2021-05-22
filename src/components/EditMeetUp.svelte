@@ -53,12 +53,10 @@
         id="name"
         label="Event Name"
         value={meetup.name}
+        valid={}
+        errorMessage={}
         on:input={event => meetup.name = event.target.value}
       />
-
-      <!-- TODO -->
-      <!-- Create Event Schedule Date Picker -->
-      <!-- Event Place (Address) -->
 
       <TextInput 
         variant="date"

@@ -121,18 +121,6 @@
     <button class={`add-to-fave ${meetup.isFavorite && 'is-favorite'}`} on:click={() => dispatch('togglefavorite', meetup.id)}></button>
     <p class="name">{meetup.name}</p>
     <p class="address ellipsis">{meetup.address} | {meetup.schedule}</p>
-    <!-- <h6>{meetup.subtitle}</h6> -->
-    <!-- <p class="poster">Posted by:
-      <a href="mailto:{meetup.contactEmail}">
-        {meetup.contactPerson}
-      </a> 
-    </p> -->
-    <!-- <div class="divider"></div> -->
     <p class="description ellipsis">{meetup.description}</p>
-    <!-- <p class="address">{meetup.address}</p> -->
   </div>
-  <!-- <div class="card-footer">
-    <Button type="button" text="See More"/>
-    <Button type="button" text="Add to Favorites"/>
-  </div> -->
 </div>

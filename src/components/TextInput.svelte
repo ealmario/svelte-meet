@@ -3,6 +3,8 @@
   export let id = "";
   export let value = "";
   export let variant = "";
+  export let valid = false;
+  export let errorMessage = "";
 </script>
 
 <style lang="scss">
@@ -49,7 +51,7 @@
     .input-with-value {
       font-size: 0.75rem;
       top: -0.875rem;
-    }
+    }   
 
     // input[type="date"]::-webkit-calendar-picker-indicator {
     //   color: #1c2026;
@@ -70,10 +72,35 @@
       right: 0.5rem;
       transform: scale(0.8);
     }
+
+    .error-message {
+      color: #cf2c2c;
+      font-size: 0.75rem;
+      height: 0;
+      margin-top: 0.5rem;
+      opacity: 0;
+      transition: 300ms ease;
+    }
+  }
+
+  .form-control.invalid {
+    .input,
+    .textarea {
+      border-color: #cf2c2c;
+    }
+
+    label {
+      color: #cf2c2c;
+    }
+
+    .error-message {
+      height: auto;
+      opacity: 1;
+    }
   }
 </style>
 
-<div class="form-control">
+<div class={`form-control ${!valid ? 'invalid' : ''}`}>
   {#if variant === "input"}
     <input
       class="input" 
@@ -112,6 +139,7 @@
     for={id}
     class={value !== ""  || variant === "date" ? 'input-with-value' : ''}
   >{label}:</label>
+  <p class="error-message">{!valid ? errorMessage : ''}</p>
   <!-- {#if variant === 'date'}
     <div class="date-icon"></div>
   {/if} -->
