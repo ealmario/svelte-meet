@@ -5,6 +5,14 @@
   export let variant = "";
   export let valid = false;
   export let errorMessage = "";
+
+  $:console.log(valid);
+
+  let touched = false;
+  
+  function handleTouch() {
+    touched = true;
+  }
 </script>
 
 <style lang="scss">
@@ -89,6 +97,11 @@
       border-color: #cf2c2c;
     }
 
+    .input:focus + label,
+    .textarea:focus + label {
+      color: #cf2c2c;
+    }
+
     label {
       color: #cf2c2c;
     }
@@ -100,7 +113,7 @@
   }
 </style>
 
-<div class={`form-control ${!valid ? 'invalid' : ''}`}>
+<div class={`form-control ${!valid && touched? 'invalid' : ''}`}>
   {#if variant === "input"}
     <input
       class="input" 
@@ -108,6 +121,7 @@
       id={id} 
       value={value} 
       on:input
+      on:blur={handleTouch}
     />
   {:else if variant === "email"}
     <input
@@ -116,6 +130,7 @@
       id={id}
       value={value}
       on:input
+      on:blur={handleTouch}
     >
   {:else if variant === "textarea"}
     <textarea 
@@ -124,6 +139,7 @@
       columns="30" 
       id={id}  
       on:input
+      on:blur={handleTouch}
     >
     </textarea>
   {:else if variant === "date"}
@@ -133,13 +149,14 @@
       id={id}
       value={value}
       on:input
+      on:blur={handleTouch}
     />
   {/if}
   <label 
     for={id}
     class={value !== ""  || variant === "date" ? 'input-with-value' : ''}
   >{label}:</label>
-  <p class="error-message">{!valid ? errorMessage : ''}</p>
+  <p class="error-message">{!valid && touched ? errorMessage : ''}</p>
   <!-- {#if variant === 'date'}
     <div class="date-icon"></div>
   {/if} -->

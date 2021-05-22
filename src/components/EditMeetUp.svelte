@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import { v4 as uuidv4 } from 'uuid';
+    import { isEmpty, isValidEmail } from './../helpers/validation';
     import TextInput from './TextInput.svelte';
     import Button from './Button.svelte';
     import FullModal from './FullModal.svelte';
@@ -26,6 +27,11 @@
 
     function closeModal() {
       dispatch('close');
+    }
+
+    function emailValidationMsg(val) {
+      if (isEmpty(val)) return 'This field cannot be empty';
+      if (!isValidEmail(val)) return 'Please enter a valid email address';
     }
 </script>
 
@@ -53,8 +59,8 @@
         id="name"
         label="Event Name"
         value={meetup.name}
-        valid={}
-        errorMessage={}
+        valid={!isEmpty(meetup.name)}
+        errorMessage="This field cannot be empty"
         on:input={event => meetup.name = event.target.value}
       />
 
@@ -63,6 +69,8 @@
         id="schedule"
         label="Event Schedule"
         value={meetup.schedule}
+        valid={!isEmpty(meetup.schedule)}
+        errorMessage="This field cannot be empty"
         on:input={event => meetup.schedule = event.target.value}
       />
 
@@ -71,6 +79,8 @@
         id="address"
         label="Event Place"
         value={meetup.address}
+        valid={!isEmpty(meetup.address)}
+        errorMessage="This field cannot be empty"
         on:input={event => meetup.address = event.target.value}
       />
 
@@ -79,6 +89,8 @@
         id="description"
         label="Description"
         value={meetup.description}
+        valid={!isEmpty(meetup.description)}
+        errorMessage="This field cannot be empty"
         on:input={event => meetup.description = event.target.value}
       />
 
@@ -87,6 +99,8 @@
         id="imgUrl"
         label="Event Image"
         value={meetup.imgUrl}
+        valid={!isEmpty(meetup.imgUrl)}
+        errorMessage="This field cannot be empty"
         on:input={event => meetup.imgUrl = event.target.value}
       />
     </FieldSet>
@@ -97,6 +111,8 @@
         id="contactPerson"
         label="Contact Person"
         value={meetup.contactPerson}
+        valid={!isEmpty(meetup.contactPerson)}
+        errorMessage="This field cannot be empty"
         on:input={event => meetup.contactPerson = event.target.value}
       />
 
@@ -105,6 +121,8 @@
         id="email"
         label="Contact Email"
         value={meetup.contactEmail}
+        valid={!isEmpty(meetup.contactEmail) && isValidEmail(meetup.contactEmail)}
+        errorMessage={emailValidationMsg(meetup.contactEmail)}
         on:input={event => meetup.contactEmail = event.target.value}
       />
     </FieldSet>
