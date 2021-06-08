@@ -1,5 +1,6 @@
 <script>
   export let legendLabel;
+  export let noMargin = false;
 </script>
 
 <style lang="scss">
@@ -7,6 +8,10 @@
     border: none;
     margin-bottom: 2.5rem;
     width: 100%;
+  }
+
+  .fieldset.no-margin {
+    margin-bottom: 0;
   }
 
   .legend {
@@ -18,7 +23,7 @@
   }
 </style>
 
-<fieldset class="fieldset">
+<fieldset class={`fieldset ${noMargin ? 'no-margin' : ''}`}>
   <legend class="legend">{legendLabel}</legend>
   <slot><!-- optional fallback --></slot>
 </fieldset>

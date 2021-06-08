@@ -20,9 +20,37 @@
     };
     
     const dispatch = createEventDispatcher();
+    let isFormValid = false;
+    let formMessage = false;
     
+    const checkInput = () => {
+      // for (const key in meetup) {
+      //   if (key !== 'isFavorite' && meetup[key] !== '') {
+      //     // isFormValid = true;
+      //     console.log(meetup[key])
+      //   }
+      // }
+
+      if (
+        !isEmpty(meetup.imgUrl) && 
+        !isEmpty(meetup.name) && 
+        !isEmpty(meetup.schedule) &&
+        !isEmpty(meetup.description) &&
+        !isEmpty(meetup.address) &&
+        !isEmpty(meetup.contactPerson) &&
+        !isEmpty(meetup.contactEmail) && isValidEmail(meetup.contactEmail) 
+      ) {
+        isFormValid = true;
+      }
+    }
+
     function submitForm() {
-      dispatch('addmeetup', meetup);
+      checkInput();
+      if (isFormValid) {
+        dispatch('addmeetup', meetup);
+      } else {
+        formMessage = true;
+      }    
     }
 
     function closeModal() {
@@ -47,6 +75,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+  }
+
+  .message {
+    background: #fdecec;
+    border: 1px solid #c42a2a;
+    border-radius: 8px;
+    color: #c42a2a;
+    font-size: 0.825rem;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    padding: 1rem 0.5rem;
     width: 100%;
   }
 </style>
@@ -105,7 +145,7 @@
       />
     </FieldSet>
  
-    <FieldSet legendLabel="Event Organizer Details">
+    <FieldSet legendLabel="Event Organizer Details" noMargin={true}>
       <TextInput 
         variant="input"
         id="contactPerson"
@@ -126,6 +166,11 @@
         on:input={event => meetup.contactEmail = event.target.value}
       />
     </FieldSet>
+    {#if formMessage}
+      <div class="message">
+        <p>All fields are required.</p>
+      </div>
+    {/if}
   </form>
   <div class="btn-container" slot="footer">
     <Button

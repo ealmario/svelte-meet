@@ -42,6 +42,7 @@
   }
 
   .footer {
+    background: #fff;
     padding: 0 1rem;
   }
 

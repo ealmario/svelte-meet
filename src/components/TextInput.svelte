@@ -6,7 +6,7 @@
   export let valid = false;
   export let errorMessage = "";
 
-  $:console.log(valid);
+  // $:console.log(valid);
 
   let touched = false;
   
