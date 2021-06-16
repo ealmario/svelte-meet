@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import { v4 as uuidv4 } from 'uuid';
+    import meetups from './../stores/meetup-store';
     import { isEmpty, isValidEmail } from './../helpers/validation';
     import TextInput from './TextInput.svelte';
     import Button from './Button.svelte';
@@ -24,13 +25,6 @@
     let formMessage = false;
     
     const checkInput = () => {
-      // for (const key in meetup) {
-      //   if (key !== 'isFavorite' && meetup[key] !== '') {
-      //     // isFormValid = true;
-      //     console.log(meetup[key])
-      //   }
-      // }
-
       if (
         !isEmpty(meetup.imgUrl) && 
         !isEmpty(meetup.name) && 
@@ -45,9 +39,11 @@
     }
 
     function submitForm() {
+      const meetupData = meetup;
       checkInput();
       if (isFormValid) {
-        dispatch('addmeetup', meetup);
+        meetups.addMeetUp(meetupData);
+        dispatch('addmeetup', meetups);
       } else {
         formMessage = true;
       }    

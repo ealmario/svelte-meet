@@ -14,7 +14,6 @@
   {#each meetups as meetup}
     <MeetUpItem 
       meetup={meetup} 
-      on:togglefavorite
     />
   {/each}
 </div>

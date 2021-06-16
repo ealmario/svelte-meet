@@ -7,17 +7,14 @@
 
 	let editMode = false;
 	
-	function toggleFavorite(event) {
-		// Extract ID from event detail
-		const id = event.detail;
-		meetups.toggleFavorite(id);
-	}
+	// function toggleFavorite(event) {
+	// 	// Extract ID from event detail
+	// 	const id = event.detail;
+	// 	meetups.toggleFavorite(id);
+	// }
 
 	function addMeetUp(event) {
-		const meetupData = event.detail;
-		meetups.addMeetUp(meetupData);
 		editMode = false;
-		console.log(meetups);
 	}
 
 	function closeModal() {
@@ -93,7 +90,6 @@
 <main>
 	<MeetUpGrid 
 		meetups={$meetups}
-		on:togglefavorite={toggleFavorite}
 	/>
 	<FloatingActionButton on:click={()=> (editMode = true)}/>
 </main>
