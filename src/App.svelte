@@ -1,4 +1,5 @@
 <script>
+	import { Router, Route, Link } from 'svelte-navigator';
 	import meetups from './stores/meetup-store';
 	import SearchInput from './components/SearchInput.svelte';
 	import MeetUpGrid from './components/MeetUpGrid.svelte';
@@ -6,12 +7,6 @@
 	import FloatingActionButton from './components/FloatingActionButton.svelte';
 
 	let editMode = false;
-	
-	// function toggleFavorite(event) {
-	// 	// Extract ID from event detail
-	// 	const id = event.detail;
-	// 	meetups.toggleFavorite(id);
-	// }
 
 	function addMeetUp(event) {
 		editMode = false;
