@@ -2,6 +2,8 @@
   import { onDestroy } from 'svelte';
   import meetups from './../stores/meetup-store';
   import Button from './Button.svelte';
+  import MeetUpInfoItem from './MeetUpInfoItem.svelte';
+  
   export let id;
 
   let selectedMeetup;
@@ -30,6 +32,9 @@
     width: 100%;
   }
 
+  .mdetail_image {
+    background: url(selectedMeetup.image) center center no-repeat fixed;
+  }
   .mdetail_content {
     background: #fff;
     border-radius: 24px 24px 0 0;
@@ -53,7 +58,14 @@
     <!-- Scrollable Content -->
     <div class="mdetail_list">
       <!-- Event Details Here -->
-      Date, time, etc.
+      <MeetUpInfoItem
+        icon="schedule"
+        header={selectedMeetup.schedule}
+      />
+      <MeetUpInfoItem
+        icon="address"
+        header={selectedMeetup.address}
+      />
     </div>
 
     <footer class="mdetail_footer">
