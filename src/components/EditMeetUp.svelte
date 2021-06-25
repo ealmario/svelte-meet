@@ -8,6 +8,8 @@
     import FullModal from './FullModal.svelte';
     import FieldSet from './FieldSet.svelte';
 
+    export let id = null;
+
     let meetup = {
       id: uuidv4(),
       imgUrl: '',
@@ -20,6 +22,26 @@
       isFavorite: false
     };
     
+
+    if (id) {
+      const unsubscribe = meetups.subscribe( items => {
+        const selectedMeetup = items.find( item => item.id === id);
+        meetup = {
+          id: selectedMeetup.id,
+          imgUrl: selectedMeetup.imgUrl,
+          name: selectedMeetup.name,
+          schedule: selectedMeetup.schedule,
+          description: selectedMeetup.description,
+          address: selectedMeetup.address,
+          contactPerson: selectedMeetup.contactPerson,
+          contactEmail: selectedMeetup.contactEmail,
+          isFavorite: selectedMeetup.isFavorite
+        }
+      });
+
+      unsubscribe();
+    }
+
     const dispatch = createEventDispatcher();
     let isFormValid = false;
     let formMessage = false;
@@ -42,7 +64,11 @@
       const meetupData = meetup;
       checkInput();
       if (isFormValid) {
-        meetups.addMeetUp(meetupData);
+        if (id) {
+          meetups.updateMeetup(id, meetupData);
+        } else {
+          meetups.addMeetUp(meetupData);
+        }
         dispatch('addmeetup', meetups);
       } else {
         formMessage = true;
