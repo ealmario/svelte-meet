@@ -13,7 +13,8 @@
 <div class="meetup-grid">
   {#each meetups as meetup}
     <MeetUpItem 
-      meetup={meetup} 
+      meetup={meetup}
+      on:showDetails 
     />
   {/each}
 </div>

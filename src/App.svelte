@@ -4,9 +4,12 @@
 	import SearchInput from './components/SearchInput.svelte';
 	import MeetUpGrid from './components/MeetUpGrid.svelte';
 	import EditMeetUp from './components/EditMeetUp.svelte';
+	import MeetUpDetail from './components/MeetUpDetail.svelte';
 	import FloatingActionButton from './components/FloatingActionButton.svelte';
 
 	let editMode = false;
+	let page = 'overview';
+	let pageData = {};
 
 	function addMeetUp(event) {
 		editMode = false;
@@ -14,6 +17,11 @@
 
 	function closeModal() {
 		editMode = !editMode;
+	}
+
+	function showDetails(event) {
+		page = 'details';
+		pageData.id = event.detail;
 	}
 </script>
 
@@ -83,8 +91,14 @@
 </div>
 
 <main>
+	<!-- Temporary: MeetUpDetail flow -->
+	{#if page === 'overview'}
 	<MeetUpGrid 
 		meetups={$meetups}
+		on:showDetails={showDetails}
 	/>
 	<FloatingActionButton on:click={()=> (editMode = true)}/>
+	{:else}
+		<MeetUpDetail id={pageData.id}/>
+	{/if}
 </main>

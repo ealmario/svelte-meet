@@ -1,6 +1,9 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import meetups from './../stores/meetup-store';
   export let meetup;
+
+  const dispatch = createEventDispatcher();
 
   function toggleFavorite() {
 		meetups.toggleFavorite(meetup.id);
@@ -115,7 +118,7 @@
 }
 </style>
 
-<div class="card">
+<div class="card" on:click={() => dispatch('showDetails', meetup.id)}>
   <figure class="card-header">
     <img src={meetup.imgUrl} alt="Meetup Item" class="meet-up-img">
   </figure>

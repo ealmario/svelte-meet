@@ -1,5 +1,5 @@
 <script>
-  import { onDestroy } from 'svelte';
+  import { onDestroy, createEventDispatcher } from 'svelte'; // Temporary: createEventDispatcher
   import meetups from './../stores/meetup-store';
   import Button from './Button.svelte';
   import MeetUpInfoItem from './MeetUpInfoItem.svelte';
@@ -11,6 +11,8 @@
   const unsubscribe = meetups.subscribe( items => {
     selectedMeetup = items.find( item => item.id === id);
   })
+
+  const dispatch = createEventDispatcher();
 
   onDestroy(() => {
     unsubscribe();
@@ -39,12 +41,22 @@
     background: #fff;
     border-radius: 24px 24px 0 0;
   }
+
+  .back-btn {
+    background: #1c2026;
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    -webkit-mask: url('/images/chevron-left.svg') no-repeat center;
+    mask: url('/images/chevron-left.svg') no-repeat center;
+    margin: 0;
+  }
 </style>
 
 <div class="mdetail_container">
   <div class="mdetail_image">
     <header class="mdetail_navigation">
-      Back Button Icon
+      <button class="back-btn" on:click={() => dispatch('close')}/>
     </header>
   </div>
 
