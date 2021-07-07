@@ -15,6 +15,7 @@
   background: #fcfcfc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0, 0.12);
+  cursor: pointer;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

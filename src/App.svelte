@@ -23,6 +23,11 @@
 		page = 'details';
 		pageData.id = event.detail;
 	}
+
+	function closeDetails() {
+		page = 'overview';
+		pageData = {};
+	}
 </script>
 
 <style lang="scss">
@@ -99,6 +104,6 @@
 	/>
 	<FloatingActionButton on:click={()=> (editMode = true)}/>
 	{:else}
-		<MeetUpDetail id={pageData.id}/>
+		<MeetUpDetail id={pageData.id} on:close={closeDetails}/>
 	{/if}
 </main>
