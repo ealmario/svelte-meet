@@ -77,13 +77,9 @@
   text-overflow: ellipsis;
 }
 
-.add-to-fave {
+.icons {
   background: #f6b23c;
   cursor: pointer;
-  -webkit-mask: url('/images/heart.svg') no-repeat center;
-  mask: url('/images/heart.svg') no-repeat center;
-  top: 0.5rem;
-  right: 0.5rem;
   height: 1.5rem;
   width: 1.5rem;
   position: absolute;
@@ -102,10 +98,23 @@
     background: #da9010;
   }
 }
+.add-to-fave {
+  -webkit-mask: url('/images/heart.svg') no-repeat center;
+  mask: url('/images/heart.svg') no-repeat center;
+  top: 0.5rem;
+  right: 0.5rem;
+}
 
 .is-favorite {
   -webkit-mask: url('/images/heart-f.svg') no-repeat center;
   mask: url('/images/heart-.svg') no-repeat center;
+}
+
+.edit-meetup {
+  top: 0.5rem;
+  right: 2.5rem;
+  -webkit-mask: url('/images/pencil.svg') no-repeat center;
+  mask: url('/images/pencil.svg') no-repeat center;
 }
 
 @media screen and (min-width: 768px) {
@@ -119,12 +128,21 @@
 }
 </style>
 
-<div class="card" on:click={() => dispatch('showDetails', meetup.id)}>
-  <figure class="card-header">
+<div class="card">
+  <figure class="card-header" on:click={() => dispatch('showDetails', meetup.id)}>
     <img src={meetup.imgUrl} alt="Meetup Item" class="meet-up-img">
   </figure>
   <div class="card-body">
-    <button class={`add-to-fave ${meetup.isFavorite && 'is-favorite'}`} on:click={toggleFavorite}></button>
+    <button 
+      class={`icons add-to-fave ${meetup.isFavorite && 'is-favorite'}`} 
+      on:click={toggleFavorite}
+    >
+    </button>
+    <button 
+      class="icons edit-meetup"
+      on:click={() => dispatch('editDetails', meetup.id)}
+    >
+    </button>
     <p class="name">{meetup.name}</p>
     <p class="address ellipsis">{meetup.address} | {meetup.schedule}</p>
     <p class="description ellipsis">{meetup.description}</p>

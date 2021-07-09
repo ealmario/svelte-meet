@@ -7,16 +7,19 @@
 	import MeetUpDetail from './components/MeetUpDetail.svelte';
 	import FloatingActionButton from './components/FloatingActionButton.svelte';
 
-	let editMode = false;
+	let editMode = null;
+	let editedID = null;
 	let page = 'overview';
 	let pageData = {};
 
-	function addMeetUp(event) {
-		editMode = false;
+	function saveMeetUp(event) {
+		editMode = null;
+		editedID = null;
 	}
 
 	function closeModal() {
-		editMode = !editMode;
+		editMode = null;
+		editedID = null;
 	}
 
 	function showDetails(event) {
@@ -27,6 +30,12 @@
 	function closeDetails() {
 		page = 'overview';
 		pageData = {};
+		editedID = null;
+	}
+
+	function editDetails(event) {
+		editMode = 'edit';
+		editedID = event.detail;
 	}
 </script>
 
@@ -79,9 +88,10 @@
 	}
 </style>
 
-{#if editMode === true}
+{#if editMode === 'edit'}
 	<EditMeetUp
-		on:addmeetup={addMeetUp}
+		id={editedID}
+		on:save={saveMeetUp}
 		on:close={closeModal}
 	/>
 {/if}
@@ -101,8 +111,9 @@
 	<MeetUpGrid 
 		meetups={$meetups}
 		on:showDetails={showDetails}
+		on:editDetails={editDetails}
 	/>
-	<FloatingActionButton on:click={()=> (editMode = true)}/>
+	<FloatingActionButton on:click={()=> (editMode = 'edit')}/>
 	{:else}
 		<MeetUpDetail id={pageData.id} on:close={closeDetails}/>
 	{/if}

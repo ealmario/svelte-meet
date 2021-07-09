@@ -15,6 +15,7 @@
     <MeetUpItem 
       meetup={meetup}
       on:showDetails 
+      on:editDetails
     />
   {/each}
 </div>

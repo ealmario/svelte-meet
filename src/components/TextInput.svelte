@@ -5,6 +5,7 @@
   export let variant = "";
   export let valid = false;
   export let errorMessage = "";
+  export let content = "";
 
   // $:console.log(valid);
 
@@ -141,6 +142,7 @@
       on:input
       on:blur={handleTouch}
     >
+      {content}
     </textarea>
   {:else if variant === "date"}
     <input

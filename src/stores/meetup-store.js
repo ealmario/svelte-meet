@@ -40,7 +40,7 @@ function addMeetUp(meetupData) {
 function updateMeetup(id, meetupData) {
   meetups.update( items => {
     const meetupIndex = items.findIndex( item => item.id === id);
-    const updatedMeetup = { ...items[meetupIndex], meetupData };
+    const updatedMeetup = { ...items[meetupIndex], ...meetupData };
     const updatedMeetups = [...items, ]
     updatedMeetups[meetupIndex] = updatedMeetup;
     return updatedMeetups;

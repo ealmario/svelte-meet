@@ -69,7 +69,7 @@
         } else {
           meetups.addMeetUp(meetupData);
         }
-        dispatch('addmeetup', meetups);
+        dispatch('save', meetups);
       } else {
         formMessage = true;
       }    
@@ -83,6 +83,8 @@
       if (isEmpty(val)) return 'This field cannot be empty';
       if (!isValidEmail(val)) return 'Please enter a valid email address';
     }
+
+    console.log('meetup', meetup);
 </script>
 
 <style lang="scss">
@@ -113,7 +115,7 @@
   }
 </style>
 
-<FullModal title="Edit Event" on:close>
+<FullModal title={id === null ? 'Add Event' : 'Edit Event'} on:close>
   <form on:submit|preventDefault={submitForm} class="edit-form">
     <FieldSet legendLabel="Event Details">
       <TextInput 
@@ -152,6 +154,7 @@
         label="Description"
         value={meetup.description}
         valid={!isEmpty(meetup.description)}
+        content={meetup.description}
         errorMessage="This field cannot be empty"
         on:input={event => meetup.description = event.target.value}
       />
