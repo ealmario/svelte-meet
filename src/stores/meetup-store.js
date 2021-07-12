@@ -47,6 +47,12 @@ function updateMeetup(id, meetupData) {
   })
 }
 
+function deleteMeetup(id) {
+  meetups.update( items => {
+    return items.filter(item => item.id !== id);
+  })
+}
+
 function toggleFavorite (id) {
   meetups.update( items => {
     // Copy meetup array before updating
@@ -66,6 +72,7 @@ const customMeetupsStore = {
   subscribe: meetups.subscribe,
   updateMeetup,
   addMeetUp,
+  deleteMeetup,
   toggleFavorite
 };
 

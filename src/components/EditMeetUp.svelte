@@ -84,7 +84,13 @@
       if (!isValidEmail(val)) return 'Please enter a valid email address';
     }
 
+    function deleteMeetup() {
+      meetups.deleteMeetup(id);
+      dispatch('save');
+    }
+
     console.log('meetup', meetup);
+    console.log('id is', id);
 </script>
 
 <style lang="scss">
@@ -113,9 +119,38 @@
     padding: 1rem 0.5rem;
     width: 100%;
   }
+
+  .delete-meetup {
+    background: #f6b23c;
+    cursor: pointer;
+    height: 1.5rem;
+    width: 1.5rem;
+    position: absolute;
+    top: 1.25rem;
+    right: 1rem;
+    transform: scale(0.8);
+    transition: 300ms ease;
+    -webkit-mask: url('/images/trash-alt.svg') no-repeat center;
+    mask: url('/images/trash-alt.svg') no-repeat center;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background: #f1a727;
+    }
+
+    &:active {
+      background: #da9010;
+    }
+  }
 </style>
 
 <FullModal title={id === null ? 'Add Event' : 'Edit Event'} on:close>
+  {#if id !== null}
+    <button class="delete-meetup" on:click={deleteMeetup}></button>
+  {/if}
   <form on:submit|preventDefault={submitForm} class="edit-form">
     <FieldSet legendLabel="Event Details">
       <TextInput 

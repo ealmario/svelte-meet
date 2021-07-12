@@ -110,6 +110,13 @@
   mask: url('/images/heart-.svg') no-repeat center;
 }
 
+.delete-meetup {
+  top: 0.5rem;
+  right: 4.5rem;
+  -webkit-mask: url('/images/trash-alt.svg') no-repeat center;
+  mask: url('/images/trash-alt.svg') no-repeat center;
+}
+
 .edit-meetup {
   top: 0.5rem;
   right: 2.5rem;
