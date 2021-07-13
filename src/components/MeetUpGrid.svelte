@@ -1,7 +1,17 @@
 <script>
   import MeetUpItem from './MeetUpItem.svelte';
+  import MeetUpFilter from './MeetUpFilter.svelte';
 
    export let meetups;
+
+   let favoritesOnly = false;
+
+   $: filteredMeetups = favoritesOnly ? meetups.filter(meetup => meetup.isFavorite) : meetups;
+
+   function setFilter(event) {
+    if (event.detail === 0 ) return favoritesOnly = false;
+    if (event.detail === 1 ) return favoritesOnly = true;
+   }
 </script>
 
 <style lang="scss">
@@ -10,8 +20,9 @@
   }
 </style>
 
+<MeetUpFilter on:select={setFilter}/>
 <div class="meetup-grid">
-  {#each meetups as meetup}
+  {#each filteredMeetups as meetup}
     <MeetUpItem 
       meetup={meetup}
       on:showDetails 
