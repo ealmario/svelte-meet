@@ -6,6 +6,7 @@
 	import EditMeetUp from './components/EditMeetUp.svelte';
 	import MeetUpDetail from './components/MeetUpDetail.svelte';
 	import FloatingActionButton from './components/FloatingActionButton.svelte';
+	import Badge from './components/Badge.svelte';
 
 	let editMode = null;
 	let editedID = null;
@@ -106,6 +107,7 @@
 </div>
 
 <main>
+	<Badge text="Today"/>
 	<!-- Temporary: MeetUpDetail flow -->
 	{#if page === 'overview'}
 	<MeetUpGrid 

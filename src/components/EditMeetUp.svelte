@@ -89,8 +89,6 @@
       dispatch('save');
     }
 
-    console.log('meetup', meetup);
-    console.log('id is', id);
 </script>
 
 <style lang="scss">
