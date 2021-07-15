@@ -1,36 +1,16 @@
 import { writable } from 'svelte/store';
-import { v4 as uuidv4 } from 'uuid';
 
-const meetups = writable([
-  {
-    id: uuidv4(),
-    imgUrl: 'https://images.summitmedia-digital.com/esquiremagph/images/2019/03/13/WeWork_MAIN_Mar2019.jpg',
-    name: 'Coding Bootcamp',
-    schedule: 'May 3, 2021',
-    description: 'In this meetup, we will have experts that would teach you how to code',
-    address: '724 Kayla Branch' ,
-    contactPerson: 'Johanna Larson',
-    contactEmail: 'jlarson@code.com',
-    isFavorite: false
-  },
-  {
-    id: uuidv4(),
-    imgUrl: 'https://bigseventravel.com/wp-content/uploads/2019/09/Blocleaf-Cafe%CC%81.jpeg',
-    name: 'Coffee Workshop',
-    schedule: 'June 20, 2021',
-    description: 'Learn the different types of brewing methods and create the perfect cup even at home! Workshop is from 3pm - 5pm on Zoom and FB Live.',
-    address: 'Apt. 818 47298 Kertzmann Summit Cubao',
-    contactPerson: 'Jennie Pfeffer',
-    contactEmail: 'jennie,pfeffer@coffeeworks.com',
-    isFavorite: false
-  },
-]);
+const meetups = writable([]);
+
+function setMeetups(meetupArray) {
+  meetups.set(meetupArray);
+}
 
 function addMeetUp(meetupData) {
   const newMeetUp = {
     ...meetupData,
-    id: uuidv4(),
-    isFavorite: false
+    // id: uuidv4() Remove this since we're getting the ID from what Firebase returns
+    // isFavorite: false Remove isFavorite and transfer to fetch in EditMeetUp
   }
   meetups.update( items => {
     return [newMeetUp, ...items];
@@ -70,6 +50,7 @@ function toggleFavorite (id) {
 
 const customMeetupsStore = {
   subscribe: meetups.subscribe,
+  setMeetups: setMeetups,
   updateMeetup,
   addMeetUp,
   deleteMeetup,
