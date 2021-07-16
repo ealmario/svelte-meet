@@ -6,11 +6,13 @@
 	import EditMeetUp from './components/EditMeetUp.svelte';
 	import MeetUpDetail from './components/MeetUpDetail.svelte';
 	import FloatingActionButton from './components/FloatingActionButton.svelte';
+	import Spinner from './components/Spinner.svelte';
 
 	let editMode = null;
 	let editedID = null;
 	let page = 'overview';
 	let pageData = {};
+	let isLoading = true;
 
 	// Fetch the data directly or you can use onMount
 	fetch('https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups.json')
@@ -26,9 +28,13 @@
 				id: key,
 			})
 		}
+		isLoading = false;
 		meetups.setMeetups(loadedMeetups);
 	})
-	.catch(err => console.log(err));
+	.catch(err => {
+		isLoading = false;
+		console.log(err);
+	});
 
 	function saveMeetUp(event) {
 		editMode = null;
@@ -104,6 +110,13 @@
 		top: 2rem;
 		left: 1.25rem;
 	}
+
+	.spinner-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 5rem;
+	}
 </style>
 
 {#if editMode === 'edit'}
@@ -126,12 +139,18 @@
 <main>
 	<!-- Temporary: MeetUpDetail flow -->
 	{#if page === 'overview'}
-	<MeetUpGrid 
-		meetups={$meetups}
-		on:showDetails={showDetails}
-		on:editDetails={editDetails}
-	/>
-	<FloatingActionButton on:click={()=> (editMode = 'edit')}/>
+		{#if isLoading}
+			<div class="spinner-container">
+				<Spinner />
+			</div>
+		{:else}
+			<MeetUpGrid 
+				meetups={$meetups}
+				on:showDetails={showDetails}
+				on:editDetails={editDetails}
+			/>
+			<FloatingActionButton on:click={()=> (editMode = 'edit')}/>
+		{/if}
 	{:else}
 		<MeetUpDetail id={pageData.id} on:close={closeDetails}/>
 	{/if}
