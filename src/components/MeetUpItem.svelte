@@ -6,6 +6,18 @@
   const dispatch = createEventDispatcher();
 
   function toggleFavorite() {
+    fetch(`https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups/${meetup.id}.json`, {
+      // Overwrite data but keep the rest
+      method: 'PATCH',
+      body: JSON.stringify({ isFavorite: !meetup.isFavorite }),
+      headers: { 'Content-Type' : 'application/json'}
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Response Failed');
+      }
+    })
+    .catch(err => console.log(err));
 		meetups.toggleFavorite(meetup.id);
 	}
 </script>

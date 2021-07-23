@@ -65,7 +65,19 @@
       checkInput();
       if (isFormValid) {
         if (id) {
-          meetups.updateMeetup(id, meetupData);
+          fetch(`https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups/${id}.json`, {
+            // Overwrite data but keep the rest
+            method: 'PATCH',
+            body: JSON.stringify(meetupData),
+            headers: { 'Content-Type' : 'application/json'}
+          })
+          .then( res => {
+            if (!res.ok) {
+              throw new Error('Response Failed');
+            }
+              meetups.updateMeetup(id, meetupData);
+          })
+          .catch( err => console.log(err));
         } else {
           fetch('https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups.json', {
             method: 'POST',
@@ -100,7 +112,14 @@
     }
 
     function deleteMeetup() {
-      meetups.deleteMeetup(id);
+      fetch(`https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups/${id}.json`, {
+        method: 'DELETE'
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Response Failed');
+        meetups.deleteMeetup(id);
+      })
+      .catch(err => console.log(err));
       dispatch('save');
     }
 
