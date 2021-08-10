@@ -1,11 +1,15 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import meetups from './../stores/meetup-store';
+  import Spinner from './Spinner.svelte';
   export let meetup;
+
+  let isLoading = false;
 
   const dispatch = createEventDispatcher();
 
   function toggleFavorite() {
+    isLoading = true;
     fetch(`https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups/${meetup.id}.json`, {
       // Overwrite data but keep the rest
       method: 'PATCH',
@@ -16,8 +20,12 @@
       if (!res.ok) {
         throw new Error('Response Failed');
       }
+      isLoading = false;
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      isLoading = false;
+    });
 		meetups.toggleFavorite(meetup.id);
 	}
 </script>
@@ -147,6 +155,7 @@
 }
 </style>
 
+{#if !isLoading}
 <div class="card">
   <figure class="card-header" on:click={() => dispatch('showDetails', meetup.id)}>
     <img src={meetup.imgUrl} alt="Meetup Item" class="meet-up-img">
@@ -167,3 +176,6 @@
     <p class="description ellipsis">{meetup.description}</p>
   </div>
 </div>
+{:else}
+  <Spinner />
+{/if}
