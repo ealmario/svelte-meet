@@ -17,9 +17,11 @@
 	let error;
 
 	// Fetch the data directly or you can use onMount
-	fetch('https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups.json')
+	fetch('https://svelte-project-fdc9a-default-rtdb.firebaseio.com/meetups.json')
 	.then(res => {
-		if (!res.ok) throw new Error('Fetching failed');
+		if (!res.ok) {
+			if (res.status === 401) throw new Error('Fetching failed. Unauthorized Access.');
+		}
 		return res.json();
 	})
 	.then(data => {

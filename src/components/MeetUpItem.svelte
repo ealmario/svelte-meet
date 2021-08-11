@@ -10,7 +10,13 @@
 
   function toggleFavorite() {
     isLoading = true;
-    fetch(`https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups/${meetup.id}.json`, {
+    // fetch(`https://svelte-meetups-4aa78-default-rtdb.firebaseio.com/meetups/${meetup.id}.json`, {
+    //   // Overwrite data but keep the rest
+    //   method: 'PATCH',
+    //   body: JSON.stringify({ isFavorite: !meetup.isFavorite }),
+    //   headers: { 'Content-Type' : 'application/json'}
+    // })
+    fetch(`https://svelte-project-fdc9a-default-rtdb.firebaseio.com/meetups/${meetup.id}.json`, {
       // Overwrite data but keep the rest
       method: 'PATCH',
       body: JSON.stringify({ isFavorite: !meetup.isFavorite }),
